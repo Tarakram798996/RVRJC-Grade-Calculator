@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/RVRJC-Grade-Calculator/static/css/main.a85d308a.css",
+    "main.js": "/RVRJC-Grade-Calculator/static/js/main.050268fc.js",
+    "static/js/453.56cf2896.chunk.js": "/RVRJC-Grade-Calculator/static/js/453.56cf2896.chunk.js",
+    "index.html": "/RVRJC-Grade-Calculator/index.html",
+    "main.a85d308a.css.map": "/RVRJC-Grade-Calculator/static/css/main.a85d308a.css.map",
+    "main.050268fc.js.map": "/RVRJC-Grade-Calculator/static/js/main.050268fc.js.map",
+    "453.56cf2896.chunk.js.map": "/RVRJC-Grade-Calculator/static/js/453.56cf2896.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a85d308a.css",
+    "static/js/main.050268fc.js"
+  ]
+}
