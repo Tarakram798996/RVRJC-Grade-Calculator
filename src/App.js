@@ -3,6 +3,7 @@ import SemesterSelector from "./components/SemesterSelector";
 import GradeTable from "./components/GradeTable";
 import ResultDisplay from "./components/ResultDisplay";
 import { semesters, gradeMap, semCumCredits } from "./data/semesterData";
+import Footer from "./components/Footer";
 
 function round2(x) {
   return Math.round(x * 100) / 100;
@@ -105,7 +106,7 @@ export default function App() {
             R.V.R & J.C. Student Grade Calculator
           </h1>
           <p className="text-sm opacity-90">
-            SGPA • CGPA • Percentage — using your official syllabus & credit weights
+            SGPA • CGPA • Percentage — using your official syllabus & credit weights of CS Branches
           </p>
         </div>
       </header>
@@ -179,9 +180,7 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="text-center text-xs text-gray-500 py-6">
-        © {new Date().getFullYear()} R.V.R & J.C. Student Grade Calculator
-      </footer>
+      <Footer />
     </div>
   );
 }
