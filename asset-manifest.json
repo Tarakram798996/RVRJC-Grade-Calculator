@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/RVRJC-Grade-Calculator/static/css/main.a85d308a.css",
-    "main.js": "/RVRJC-Grade-Calculator/static/js/main.050268fc.js",
+    "main.css": "/RVRJC-Grade-Calculator/static/css/main.83fd1ec0.css",
+    "main.js": "/RVRJC-Grade-Calculator/static/js/main.b024744e.js",
     "static/js/453.56cf2896.chunk.js": "/RVRJC-Grade-Calculator/static/js/453.56cf2896.chunk.js",
     "index.html": "/RVRJC-Grade-Calculator/index.html",
-    "main.a85d308a.css.map": "/RVRJC-Grade-Calculator/static/css/main.a85d308a.css.map",
-    "main.050268fc.js.map": "/RVRJC-Grade-Calculator/static/js/main.050268fc.js.map",
+    "main.83fd1ec0.css.map": "/RVRJC-Grade-Calculator/static/css/main.83fd1ec0.css.map",
+    "main.b024744e.js.map": "/RVRJC-Grade-Calculator/static/js/main.b024744e.js.map",
     "453.56cf2896.chunk.js.map": "/RVRJC-Grade-Calculator/static/js/453.56cf2896.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a85d308a.css",
-    "static/js/main.050268fc.js"
+    "static/css/main.83fd1ec0.css",
+    "static/js/main.b024744e.js"
   ]
 }
