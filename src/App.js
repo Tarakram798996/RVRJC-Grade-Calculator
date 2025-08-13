@@ -25,41 +25,24 @@ export default function App() {
 
   // Calculate SGPA from selected grades
   const computeSGPA = () => {
-    const errs = [];
+  const errs = [];
 
-    if (semester === "") {
-      errs.push("Please select a semester.");
-    }
+  if (semester === "") {
+    errs.push("Please select a semester.");
+  }
 
-    // Ensure all credit-bearing subjects have a grade
-    if (semester !== "") {
-      currentSubjects.forEach((s, i) => {
-        if (s.credits > 0 && !grades[i]) {
-          errs.push(`Select a grade for "${s.name}".`);
-        }
-      });
-    }
-
-    // Validate prevCGPA if semester > 0
-    if (semester !== "" && semester > 0) {
-      if (prevCGPA === "" || Number.isNaN(Number(prevCGPA))) {
-        errs.push("Enter your previous CGPA.");
-      } else if (prevCGPA < 0 || prevCGPA > 10) {
-        errs.push("Previous CGPA must be between 0 and 10.");
+  // Ensure all credit-bearing subjects have a grade
+  if (semester !== "") {
+    currentSubjects.forEach((s, i) => {
+      if (s.credits > 0 && !grades[i]) {
+        errs.push(`Select a grade for "${s.name}".`);
       }
-    }
+    });
+  }
 
-    if (errs.length) {
-      setErrors(errs);
-      setSGPA(null);
-      setCGPA(null);
-      setPercentage(null);
-      return;
-    } else {
-      setErrors([]);
-    }
-
-    // SGPA
+  // --- Calculate SGPA regardless of prevCGPA ---
+  let sg = null;
+  if (semester !== "" && errs.length === 0) {
     let totalPoints = 0;
     let totalCredits = 0;
     currentSubjects.forEach((subj, idx) => {
@@ -69,12 +52,23 @@ export default function App() {
         totalCredits += subj.credits;
       }
     });
-
-    const sg = round2(totalPoints / totalCredits);
+    sg = round2(totalPoints / totalCredits);
     setSGPA(sg);
+  } else {
+    setSGPA(null);
+  }
 
-    // CGPA (only if > 1st sem)
-    if (semester > 0) {
+  // --- Calculate CGPA only if prevCGPA is valid ---
+  if (semester > 0) {
+    if (prevCGPA === "" || Number.isNaN(Number(prevCGPA))) {
+      errs.push("Enter your previous CGPA to calculate updated CGPA.");
+      setCGPA(null);
+      setPercentage(null);
+    } else if (prevCGPA < 0 || prevCGPA > 10) {
+      errs.push("Previous CGPA must be between 0 and 10.");
+      setCGPA(null);
+      setPercentage(null);
+    } else if (sg !== null) {
       const prevCredits = semCumCredits[semester - 1];
       const totalCreditsTillNow = semCumCredits[semester];
       const currentSemCredits = totalCreditsTillNow - prevCredits;
@@ -82,11 +76,15 @@ export default function App() {
       const newCG = round2(((Number(prevCGPA) * prevCredits) + (sg * currentSemCredits)) / totalCreditsTillNow);
       setCGPA(newCG);
       setPercentage(round2((newCG - 0.5) * 10));
-    } else {
-      setCGPA(null);
-      setPercentage(null);
     }
-  };
+  } else {
+    setCGPA(null);
+    setPercentage(null);
+  }
+
+  setErrors(errs);
+};
+
 
   const resetAll = () => {
     setSemester("");
@@ -137,9 +135,7 @@ export default function App() {
                     onChange={(e) => setPrevCGPA(e.target.value)}
                     placeholder="e.g. 8.45"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
-                    We compute correct weights internally using cumulative credits — you don’t need to enter previous credits.
-                  </p>
+                  
                 </div>
               )}
 
